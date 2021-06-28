@@ -32,15 +32,18 @@ export default {
             prodotti: [
                 {
                     nome: 'Aspirapolvere',
-                    prezzo: 10
+                    prezzo: 10,
+                    qta: 1
                 },
                 {
                     nome: 'Dentifricio',
-                    prezzo: 15
+                    prezzo: 15,
+                    qta: 2
                 },
                 {
                     nome: 'Papera di gomma',
-                    prezzo: 32
+                    prezzo: 32,
+                    qta: 3
                 }
             ],
             notification: {
@@ -57,13 +60,16 @@ export default {
     },
     methods: {
         notify(msg, type='success') {
-            this.notification.msg = msg;
-            this.notification.type = type;
+            this.notification.msg = msg
+            this.notification.type = type
         }
     },
     mounted() {
-        bus.$on('cart:removed', () => this.notify('prodotto rimosso', 'alert'));
-        bus.$on('cart:added', () => this.notify('prodotto agginto'));
+        bus.$on('carrello:rimosso', () => this.notify('prodotto rimosso', 'danger'))
+        bus.$on('carrello:aggiunto', () => this.notify('prodotto agginto'))
+        bus.$on('carrello:svuota', () => this.notify('carrello svuotato', 'warning'))
+        bus.$on('prodotto:terminato', () => this.notify('prodotto terminato', 'danger'))
+        bus.$on('prodotto:incrementaQta', (prodotto) => {prodotto.qta++});
     }
 }
 </script>
@@ -81,5 +87,10 @@ export default {
 .lista-prodotti {
     padding: 0;
     list-style-type: none;
+}
+.btn {
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="singolo-prodotto">
-        <span>{{ prodotto.nome }} - {{ prodotto.prezzo }}</span>
-        <span><button @click="aggiungi">aggiungi</button></span>
+        <span>{{ prodotto.nome }} - {{ prodotto.prezzo }}€ (qta: {{prodotto.qta}})</span>
+        <span class="btn add" @click="aggiungi">+</span>
     </div>
 </template>
 
@@ -14,12 +14,18 @@ export default {
     },
     methods: {
         aggiungi() {
-            bus.$emit('product:add', this.prodotto);
+            if (this.prodotto.qta === 0) {
+                bus.$emit('prodotto:terminato')
+                return
+            }
+            bus.$emit('prodotto:aggiungi', this.prodotto)
         }
     }
 }
 </script>
 
 <style scoped>
-
+.add {
+    color: green;
+}
 </style>

@@ -1,9 +1,10 @@
 <template>
-    <p v-if="msg" class="alert" :class="{'text-green': this.type === 'success', 'text-red': this.type === 'alert'}">{{ msg }}</p>
+    <p v-if="msg"
+       class="alert"
+       :class="{'bg-green': this.type === 'success', 'bg-red': this.type === 'danger', 'bg-blue': this.type === 'warning'}">{{ msg }}</p>
 </template>
 
 <script>
-
 export default {
     props: {
         msg: String,
@@ -17,14 +18,24 @@ export default {
 
 <style scoped>
 .alert {
-    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 10px;
-    background: lightgrey;
+    color: white;
+    font-weight: bold;
 }
-.text-green {
-    color: green;
+
+.bg-green {
+    background-color: green;
 }
-.text-red {
-    color: red;
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-blue {
+    background-color: blue;
 }
 </style>
