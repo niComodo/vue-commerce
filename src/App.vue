@@ -12,7 +12,6 @@
                       :prodotto="prodotto"/>
         </div>
 
-
         <!--CARRELLO-->
         <h2>Il tuo carrello</h2>
         <Carrello/>
@@ -25,7 +24,6 @@ import Prodotto from './components/Prodotto.vue';
 import Carrello from './components/Carrello.vue';
 import Message from './components/Message.vue';
 import bus from "@/bus";
-// import bus from '@/bus';
 
 export default {
     name: 'App',
